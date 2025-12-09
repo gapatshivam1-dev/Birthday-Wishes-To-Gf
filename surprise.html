@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Surprise for Friend 💌</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #fff0f5;
+      font-family: 'Nunito', sans-serif;
+      color: #ff4081;
+      text-align: center;
+      padding: 30px;
+    }
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 32px;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #ff4081;
+      font-weight: bold;
+    }
+    #hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    #hidden-message {
+      display: none;
+      margin-top: 20px;
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      color: #ff4081;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .btn {
+      background: #ff4081;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="hearts"></div>
+
+  <header>
+    <h1>Surprise Time 🎉</h1>
+    <nav>
+      <a href="index.html">Birthday</a>
+      <a href="poem.html">Poem</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about-her.html">About You</a>
+      <a href="game.html">Mini Game</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Click the button to reveal a secret 💖</h2>
+    <button class="btn" onclick="revealMessage()">Reveal 💌</button>
+    <div id="hidden-message">
+      You + Me = Forever is my favorite equation. I love you, Friend 🐼❤️
+    </div>
+  </main>
+
+  <script>
+    function revealMessage() {
+      document.getElementById('hidden-message').style.display = 'block';
+    }
+
+    // Heart rain animation
+    (function heartRain(){
+      const container = document.getElementById('hearts');
+      const colors = ['#ff6b9a','#ff9bbb','#ffb3cc','#ffd6e7'];
+      const heartChar = '❤';
+
+      function spawnHeart(){
+        const h = document.createElement('div');
+        h.textContent = heartChar;
+        h.style.position='absolute';
+        h.style.left = Math.random()*100 + 'vw';
+        h.style.top = '-40px';
+        h.style.fontSize = (12 + Math.random()*28) + 'px';
+        h.style.color = colors[Math.floor(Math.random()*colors.length)];
+        h.style.opacity = (0.6 + Math.random()*0.4).toFixed(2);
+        h.style.filter = 'drop-shadow(0 4px 6px rgba(255,107,154,.25))';
+        const fall = 8 + Math.random()*10;
+        const drift = (Math.random() < .5 ? -1 : 1) * (10 + Math.random()*30);
+        h.animate([
+          { transform: 'translate(0,-60px) rotate(0deg)' },
+          { transform: `translate(${drift}px, 100vh) rotate(${Math.random()*120-60}deg)` }
+        ], { duration: fall*1000, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' });
+
+        container.appendChild(h);
+        setTimeout(()=> container.removeChild(h), fall*1000 + 200);
+      }
+
+      setInterval(spawnHeart, 300);
+      for(let i=0;i<20;i++) setTimeout(spawnHeart, i*120);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Love Tiles</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #d6336c;
+      margin-bottom: 20px;
+    }
+
+    #game {
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      grid-gap: 15px;
+    }
+
+    .tile {
+      width: 80px;
+      height: 80px;
+      background: #fff0f5;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff69b4;
+      font-size: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .matched {
+      background: #ffe6f0;
+      box-shadow: none;
+      cursor: default;
+    }
+
+    #finalMessage {
+      display: none;
+      margin-top: 30px;
+      font-size: 22px;
+      color: #d6336c;
+      background: #fff0f5;
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #ff69b4;
+    }
+  </style>
+</head>
+<body>
+  <h1>💘 Love Tiles</h1>
+  <div id="game"></div>
+  <div id="finalMessage">You matched every piece of my heart 💖</div>
+
+  <script>
+    const emojis = ['💖','🌸','😘','💕','😍','🌷','💖','🌸','😘','💕','😍','🌷'];
+    const game = document.getElementById('game');
+    const finalMessage = document.getElementById('finalMessage');
+    let firstTile = null;
+    let lockBoard = false;
+    let matchedCount = 0;
+
+    // Shuffle emojis
+    emojis.sort(() => 0.5 - Math.random());
+
+    emojis.forEach((emoji, index) => {
+      const tile = document.createElement('div');
+      tile.classList.add('tile');
+      tile.dataset.emoji = emoji;
+      tile.dataset.index = index;
+      tile.textContent = '';
+      game.appendChild(tile);
+
+      tile.addEventListener('click', () => {
+        if (lockBoard || tile.classList.contains('matched') || tile === firstTile) return;
+
+        tile.textContent = emoji;
+
+        if (!firstTile) {
+          firstTile = tile;
+        } else {
+          lockBoard = true;
+          if (tile.dataset.emoji === firstTile.dataset.emoji) {
+            tile.classList.add('matched');
+            firstTile.classList.add('matched');
+            matchedCount += 2;
+            firstTile = null;
+            lockBoard = false;
+            if (matchedCount === emojis.length) {
+              finalMessage.style.display = 'block';
+            }
+          } else {
+            setTimeout(() => {
+              tile.textContent = '';
+              firstTile.textContent = '';
+              firstTile = null;
+              lockBoard = false;
+            }, 800);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+	

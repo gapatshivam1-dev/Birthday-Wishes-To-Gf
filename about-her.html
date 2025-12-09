@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Friend 🐼</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #fff0f5;
+      font-family: 'Nunito', sans-serif;
+      color: #ff4081;
+      text-align: center;
+      padding: 30px;
+      overflow-x: hidden;
+      position: relative;
+    }
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 32px;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #ff4081;
+      font-weight: bold;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 30px;
+    }
+    li {
+      background: white;
+      margin: 10px auto;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 18px;
+      max-width: 500px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeIn 1s ease forwards, glow 2s infinite alternate;
+    }
+
+    /* Reveal one-by-one */
+    li:nth-child(1) { animation-delay: 0.5s, 0.5s; }
+    li:nth-child(2) { animation-delay: 1.5s, 1.5s; }
+    li:nth-child(3) { animation-delay: 2.5s, 2.5s; }
+    li:nth-child(4) { animation-delay: 3.5s, 3.5s; }
+    li:nth-child(5) { animation-delay: 4.5s, 4.5s; }
+    li:nth-child(6) { animation-delay: 5.5s, 5.5s; }
+    li:nth-child(7) { animation-delay: 6.5s, 6.5s; }
+
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px #ff80ab; }
+      50% { box-shadow: 0 0 20px #ff4081; }
+      100% { box-shadow: 0 0 5px #ff80ab; }
+    }
+
+    /* Falling hearts */
+    .heart {
+      position: fixed;
+      top: -50px;
+      animation: fall linear forwards;
+      z-index: 0;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Side GIFs with bounce */
+    .side-gif {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 150px;
+      height: auto;
+      z-index: 1;
+      animation: bounce 2s infinite ease-in-out;
+    }
+    .left-gif { left: 10px; }
+    .right-gif { right: 10px; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(-50%) scale(1); }
+      50% { transform: translateY(-55%) scale(1.05); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>All About Friend 🐼💖</h1>
+    <nav>
+      <a href="index.html">Birthday</a>
+      <a href="poem.html">Poem</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="surprise.html">Surprise</a>
+      <a href="game.html">Mini Game</a>
+    </nav>
+  </header>
+
+  <!-- Left and right GIFs -->
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzYxeHh1N2N2dzRwNm5keWRqeHFpa2ZjenY0amt6NGJ5cTN3OTY0byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NxC8VtyxqhMtpLoEEN/giphy.gif" alt="Dancing Panda" class="side-gif left-gif">
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExams5N2VnYTU4eXVnNG1yOXd4YXoyZjhsYzBrd3NxdHJqam4xcTFwNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sc54SIQ5QekyhMvat9/giphy.gif" alt="Singing Panda" class="side-gif right-gif">
+
+  <main>
+    <ul>
+      <li>She calls me silly names and makes me smile every single time 🥹💘</li>
+      <li>Her laugh is my favorite melody in the whole world 💓</li>
+      <li>She loves pandas almost as much as I love her 🐼💕</li>
+      <li>She gets excited over the tiniest things — and it melts my heart 💫</li>
+      <li>She’s the kind of person who makes rainy days feel like sunshine ☔☀️</li>
+      <li>She’s my best friend, my safe place, and my biggest cheerleader 💌</li>
+      <li>She says “I love you” in ways that don’t even need words 💖</li>
+    </ul>
+  </main>
+
+  <!-- JavaScript for many colorful, faster falling hearts -->
+  <script>
+    const heartColors = ['💘', '❤️', '💖', '💗', '💕', '💓', '💞'];
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = heartColors[Math.floor(Math.random() * heartColors.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's'; // faster
+      heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 3000);
+    }
+
+    setInterval(createHeart, 150);
+  </script>
+</body>
+</html>
+

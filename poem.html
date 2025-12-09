@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💌 A Poem for My Baby Girl 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ff4d88;
+      --lavender: #e6ccff;
+      --card: #ffffff;
+      --ink: #5a2a3a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom right, #ffe6f0, #e6ccff);
+      font-family: 'Nunito', sans-serif;
+      color: var(--ink);
+      padding: 28px 16px 60px;
+      overflow-x: hidden;
+      position: relative;
+    }
+    header {
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 38px;
+      color: var(--pink);
+      margin-bottom: 6px;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--pink);
+      font-weight: bold;
+    }
+    .poem-layout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .gif {
+      width: 160px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+    .poem-box {
+      background: var(--card);
+      max-width: 600px;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255,77,136,0.2);
+      text-align: left;
+      border: 2px dashed var(--pink);
+    }
+    .poem-box p {
+      font-size: 20px;
+      line-height: 1.8;
+      margin: 12px 0;
+    }
+    audio {
+      display: block;
+      margin: 30px auto;
+    }
+
+    /* Falling hearts */
+    #hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      top: -40px;
+      font-size: 22px;
+      color: #ff4d88;
+      animation: fall 6s linear infinite;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="hearts"></div>
+
+  <header>
+    <h1>💌 A Poem for My Baby Girl 👑💖</h1>
+    <nav>
+      <a href="index.html">Birthday</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about-her.html">About You</a>
+      <a href="surprise.html">Surprise</a>
+      <a href="game.html">Mini Game</a>
+    </nav>
+  </header>
+
+  <div class="poem-layout">
+    <img class="gif" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3J6azlqYTlrbWZ2NW9tNGp5aDk2aHFubHpqb2FpeHgzd3ZheGg3MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NWTdeKBYNM18iWyD2R/giphy.gif" alt="Baby Girl Love Left" />
+
+    <div class="poem-box">
+      <p> On this special day 🌸💫</p>
+      <p> I just want to say 💌🌹</p>
+      <p> You’re my sunshine ☀️❤️</p>
+      <p>My forever valentine 💕🌙 </p>
+      <p> With every smile 😊💖</p>
+      <p> You make life worthwhile 🌎🌷</p>
+      <p> So today I pray 🙏🌈</p>
+      <p> Happiness finds you every day 🌟🌺</p>
+      <p>Happy Birthday, my love 🎉💍</p>
+      <p>You’re my angel from above 👼💞</p>
+    </div>
+
+    <img class="gif" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGtvdnljOWs5bXRqeWxicDd0dGFueWQyZzVjdzNnM2x5em44YXQ1dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uS8FzhKk8DzjQHjVcO/giphy.gif" alt="Baby Girl Love Right" />
+  </div>
+
+  <script>
+    // Falling hearts
+    const heartContainer = document.getElementById('hearts');
+    const emojis = ['💖','❤️','💕','💘','💞'];
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (18 + Math.random() * 16) + 'px';
+      heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+      heartContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
